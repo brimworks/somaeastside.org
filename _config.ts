@@ -14,6 +14,7 @@ import slugify_urls from "lume/plugins/slugify_urls.ts";
 import source_maps from "lume/plugins/source_maps.ts";
 import tailwindcss from "lume/plugins/tailwindcss.ts";
 import postcss from "lume/plugins/postcss.ts";
+import typography from "npm:@tailwindcss/typography";
 
 const site = lume({
     src: "./src",
@@ -44,7 +45,10 @@ site.use(tailwindcss({
                 sans: ['Raleway', 'sans-serif'],
             },
         },
-    }
+        plugins: [
+            typography,
+        ]
+    },
 }));
 site.use(postcss());
 
