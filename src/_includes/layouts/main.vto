@@ -2,21 +2,39 @@
   <head>
     <title>{{ title }}</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   </head>
   <body>
     {{ comp.templates["web-carousel"]() }}
-    <header class="flex flex-row flex-nowrap items-center w-full p-2 space-x-2 bg-gray-200 overflow-hidden h-9">
-      <nav>
-        <svg class="h-full w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+    <header class="flex flex-row sm:flex-col md:flex-row flex-nowrap items-center w-full p-2 space-x-2 bg-gray-200 overflow-hidden">
+      <nav class="sm:hidden">
+        <svg class="h-full w-9" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="
+          M1 1 H13 M1 5 H13 M1 9 H13"/>
         </svg>
       </nav>
-      <a href="/" aria-current="page">
-        {{ comp.icons.soma({className: "h-full w-5"}) }}
-      </a>
-      <div class="text-xs whitespace-nowrap overflow-x-auto">SOMA EASTSIDE CHURCH</div>
+      <div class="flex flex-row justify-center items-center space-x-2 grow">
+        <a href="/" aria-current="page">
+          {{ comp.icons.soma({className: "h-full w-8 sm:w-11"}) }}
+        </a>
+        <div class="text-md whitespace-nowrap overflow-x-auto sm:hidden">SOMA EASTSIDE CHURCH</div>
+        <div class="flex flex-col flex-nowrap hidden sm:block">
+          <div class="text-xs">SOMA EASTSIDE</div>
+          <div class="text-xl font-black scale-y-110 flex justify-center">CHURCH</div>
+        </div>
+      </div>
+      <nav class="hidden sm:block w-full px-10 pt-4 md:pt-0">
+        <ul class="flex flex-row space-x-4">
+          <li class="flex-auto">ABOUT
+          <li class="flex-auto">MINISTRIES
+          <li class="flex-auto">EVENTS
+          <li class="flex-auto">GIVE
+          <li class="flex-auto">SERMONS
+          <li class="flex-auto">RESOURCES
+        </ul>
+      </nav>
     </header>
     <article class="prose p-2 container mx-auto">
     {{ content }}
