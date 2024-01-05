@@ -4,17 +4,19 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <script defer src="/script/component/carousel.js"></script>
   </head>
   <body>
-    <header class="flex flex-row flex-nowrap w-full p-2 space-x-2 bg-gray-200">
-      <a href="/" aria-current="page" class="h-12">
-        {{ comp.icons.soma({className: "h-12"}) }}
+    {{ comp.templates["web-carousel"]() }}
+    <header class="flex flex-row flex-nowrap items-center w-full p-2 space-x-2 bg-gray-200 overflow-hidden h-9">
+      <nav>
+        <svg class="h-full w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </nav>
+      <a href="/" aria-current="page">
+        {{ comp.icons.soma({className: "h-full w-5"}) }}
       </a>
-      <div class="flex flex-col flex-nowrap align-middle justify-center text-center">
-        <div class="text-xs">SOMA EASTSIDE</div>
-        <div class="text-2xl">CHURCH</div>
-      </div>
+      <div class="text-xs whitespace-nowrap overflow-x-auto">SOMA EASTSIDE CHURCH</div>
     </header>
     <article class="prose p-2 container mx-auto">
     {{ content }}
