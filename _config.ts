@@ -16,9 +16,14 @@ import tailwindcss from "lume/plugins/tailwindcss.ts";
 import postcss from "lume/plugins/postcss.ts";
 import typography from "npm:@tailwindcss/typography";
 
+// Markdown plugin configuration
+const markdown = {
+    extensions: [".md", ".markdown", ".html"]
+};
+
 const site = lume({
     src: "./src",
-});
+}, { markdown });
 site.use(esbuild({
     extensions: [".browser.tsx", ".js"],
 }));
