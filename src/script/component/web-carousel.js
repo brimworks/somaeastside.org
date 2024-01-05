@@ -92,7 +92,7 @@ class Carousel extends HTMLElement {
       const position = 0 == idx ? "center" : (halfIdx < idx ? "left" : "right");
 
       const itemContent = templateItem.cloneNode(true);
-      itemContent.querySelector("slot").replaceChildren(...child.cloneNode(true).children);
+      itemContent.querySelector("slot").replaceChildren(child.cloneNode(true));
       this.#stylePosition(itemContent, position);
       templateItemList.append(itemContent);
       if (templateJumpList) {
