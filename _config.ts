@@ -49,6 +49,11 @@ site.use(tailwindcss({
             fontFamily: {
                 sans: ['Raleway', 'sans-serif'],
             },
+            screens: {
+                'sm': '640px',
+                'md': '1024px',
+                'lg': '1280px',
+            },
         },
         plugins: [
             typography,
