@@ -15,6 +15,7 @@ import source_maps from "lume/plugins/source_maps.ts";
 import tailwindcss from "lume/plugins/tailwindcss.ts";
 import postcss from "lume/plugins/postcss.ts";
 import typography from "npm:@tailwindcss/typography";
+import liquid from "lume/plugins/liquid.ts";
 
 // Markdown plugin configuration
 const markdown = {
@@ -28,8 +29,9 @@ site.use(esbuild({
     extensions: [".browser.tsx", ".js"],
 }));
 site.use(jsx({
-    extensions: [".site.tsx"],
+    extensions: [".jsx"],
 }));
+site.use(liquid());
 site.use(feed());
 site.use(minify_html());
 site.use(nav());

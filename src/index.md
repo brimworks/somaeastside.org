@@ -1,6 +1,6 @@
 ---
 title: (Dev) Soma Eastside Church
-layout: layouts/main.vto
+layout: layouts/main.liquid
 ---
 
 <web-carousel interval="7000">

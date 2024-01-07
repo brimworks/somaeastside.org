@@ -1,0 +1,49 @@
+  <header class="flex sticky top-0 z-50 shadow-xl whitespace-nowrap
+    border-b bg-gray-200 border-gray-600
+    sm:flex-col sm:items-center sm:justify-items-center
+    md:flex-row">
+    <nav class="sm:hidden px-3 py-2">
+      <svg class="h-full w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M1 1H13 M1 5H10 M1 9H13"/>
+      </svg>
+    </nav>
+    <div class="flex flex-row grow justify-center sm:justify-start items-center p-2 sm:pb-0">
+      <a href="/" aria-current="page">
+        {% render 'icons/soma.liquid', class: 'w-6 sm:w-10' %}
+      </a>
+      <div class="text-lg whitespace-nowrap overflow-x-auto px-3 sm:hidden">SOMA EASTSIDE CHURCH</div>
+      <div class="flex flex-col hidden sm:block">
+        <div class="text-xs">SOMA EASTSIDE</div>
+        <div class="text-xl font-black scale-y-110 flex justify-center">CHURCH</div>
+      </div>
+    </div>
+    <nav class="hidden sm:block flex-none">
+      <ul class="flex flex-row h-full">
+        <li>
+          <details class="relative h-full">
+            <summary class="h-full px-4 flex items-center">ABOUT</summary>
+            <ul class="absolute shadow-xl bg-gray-200 p-5 pt-0 rounded-b-lg border-l border-r border-b border-gray-600 divide-y divide-black">
+              <li><a href="/post/mission">OUR MISSION</a></li>
+              <li><details>
+                <summary>OUR TEAM</summary>
+                <ul class="px-3">
+                  <li><a href="/post/elders">Elders</a></li>
+                  <li><a href="/post/deacons">Deacons</a></li>
+                  <li><a href="/post/groups">Groups</a></li>
+                </ul>
+              </details></li>
+              <li><a href="/post/first-visit">PLAN YOUR VISIT</a></li>
+              <li><a href="/post/connect">CONNECT WITH US</a></li>
+            </ul>
+          </details>
+        </li>
+        <li class="px-4 flex items-center">MINISTRIES</li>
+        <li class="px-4 flex items-center">EVENTS</li>
+        <li class="px-4 flex items-center">GIVE</li>
+        <li class="px-4 flex items-center">SERMONS</li>
+        <li class="px-4 flex items-center m-2">
+          <button class="rounded-full px-4 py-2 bg-blue-500 text-white">CONNECT</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
