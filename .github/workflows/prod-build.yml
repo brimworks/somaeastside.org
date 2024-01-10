@@ -13,11 +13,11 @@ jobs:
     - name: Install Deno
       run: |
         curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.15.1
-        $HOME/.deno/bin/deno run -A https://deno.land/x/aleph@v0.3.0-beta.19/install.ts
+        $HOME/.deno/bin/deno run -Ar https://deno.land/x/lume@v2.0.2/init.ts
     - name: Build
       run: |
         export PATH=$HOME/.deno/bin:$PATH
-        aleph build .
+        deno task build
     - name: Deploy
       run: |
         echo "REGION=$AWS_DEFAULT_REGION"
