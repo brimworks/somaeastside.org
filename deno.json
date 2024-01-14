@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "npm:react",
+    "jsxImportSource": "npm:preact",
     "types": [
       "https://unpkg.com/@types/react@18.2.37/index.d.ts",
       "lume/types.ts"
@@ -13,8 +13,6 @@
     "serve": "deno task lume -s"
   },
   "imports": {
-    "flowbite/plugin": "npm:flowbite@^2.2.1",
-    "flowbite-react": "npm:flowbite-react@^0.7.2",
     "lume/": "https://deno.land/x/lume@v2.0.1/"
   }
 }

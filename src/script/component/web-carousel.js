@@ -24,7 +24,7 @@ template.
 Note that any previous/next/jump buttons will need to specify onclick handlers that call
 jump() or jumpRelative() on this component.
  */
-
+(function() {
 function removeChildren(node) {
   while (node.hasChildNodes()) {
     node.removeChild(node.firstChild);
@@ -202,3 +202,4 @@ class Carousel extends HTMLElement {
   }
 }
 customElements.define('web-carousel', Carousel);
+})();

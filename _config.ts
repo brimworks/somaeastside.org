@@ -1,6 +1,6 @@
 import lume from "lume/mod.ts";
 import esbuild from "lume/plugins/esbuild.ts";
-import jsx from "lume/plugins/jsx.ts";
+import jsx from "lume/plugins/jsx_preact.ts";
 import feed from "lume/plugins/feed.ts";
 import minify_html from "lume/plugins/minify_html.ts";
 import nav from "lume/plugins/nav.ts";
@@ -26,12 +26,16 @@ const site = lume({
     src: "./src",
 }, { markdown });
 site.use(esbuild({
-    extensions: [".browser.tsx", ".js"],
+    extensions: [".js"],
 }));
 site.use(jsx({
-    extensions: [".jsx"],
+    extensions: [".jsx", ".tsx"],
 }));
-site.use(liquid());
+site.use(liquid({
+    options: {
+        extname: ".liquid"
+    }
+}));
 site.use(feed());
 site.use(minify_html());
 site.use(nav());
@@ -49,7 +53,8 @@ site.use(tailwindcss({
     options: {
         theme: {
             fontFamily: {
-                sans: ['Raleway', 'sans-serif'],
+                sans: ['Roboto', 'sans-serif'],
+                banner: ['Public Sans', 'sans-serif']
             },
             screens: {
                 'sm': '640px',

@@ -12,7 +12,7 @@ can unsubscribe at any time by using the link at the bottom of each email.
   <input id="EMAIL" type="email" placeholder="name@mail.com" name="EMAIL" required class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-1 px-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
 <label for="FNAME" class="w-auto">First Name</label><input id="FNAME" type="text" name="FNAME" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-1 px-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light w-full">
 <label for="LNAME" class="w-auto">Last Name</label><input id="LNAME" type="text" name="LNAME" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-1 px-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light w-full">
-<button type="submit" value="SUBSCRIBE"></button>
+<button type="submit" value="SUBSCRIBE" class="rounded-full px-4 py-2 bg-blue-500 text-white dark:text-black">SUBSCRIBE</button>
 </form>
 
 ## Contact Us
