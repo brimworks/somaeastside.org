@@ -19,8 +19,8 @@ export default ({ }: Lume.Data, helpers: Lume.Helpers) => (
   <body className="dark:bg-black">
     <Header />
     <div className="relative w-full">
-      <div className="sticky top-0 overflow-hidden w-full h-90 flex z-10">
-        <img src="/static/img/john-price-RAZQiZOX3mU-unsplash.jpg" className="w-full scale-110 self-center translate-y-2" />
+      <div className="sticky top-0 overflow-hidden w-full flex z-10">
+        <img src="/static/img/john-price-RAZQiZOX3mU-unsplash.jpg" className="w-full h-[50vh] object-cover scale-110 self-center translate-y-2" />
       </div>
       <div className="relative backdrop-brightness-75 bg-white/30 z-20">
         <div className="container mx-auto p-20">
