@@ -21,7 +21,7 @@ jobs:
     - name: Deploy
       run: |
         echo "REGION=$AWS_DEFAULT_REGION"
-        aws s3 --region "$AWS_DEFAULT_REGION" sync ./_site s3://soma.brimworks.com
+        aws s3 --region "$AWS_DEFAULT_REGION" sync ./_site s3://soma.brimworks.com --cache-control max-age=5,public
       env:
         AWS_ACCESS_KEY_ID: '${{ secrets.AWS_ACCESS_KEY_ID }}'
         AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
