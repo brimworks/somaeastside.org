@@ -11,11 +11,16 @@ export default ({ title, children }: Lume.Data, helpers: Lume.Helpers) => (
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/index.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <style>{"\
+      img {\
+        max-height: 50svh;\
+      }\
+    "}</style>
   </head>
   <body className="dark:bg-black">
     <WebCarousel />
     <Header />
-    <article className=" prose md:prose-lg dark:prose-invert max-w-none">
+    <article className="p-10 sm:p-20 prose md:prose-lg dark:prose-invert !container mx-auto [&>div]:bg-black">
       {children}
     </article>
   </body>

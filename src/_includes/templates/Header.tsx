@@ -3,7 +3,7 @@ import Soma from '../icons/Soma.tsx'
 export default ({ title, children }: Lume.Data, helpers: Lume.Helpers) => (
   <>
 <header className="flex sticky top-0 z-50 shadow-xl whitespace-nowrap
-    border-b bg-gray-200 dark:bg-black dark:text-white border-gray-600
+    bg-gray-200 dark:bg-black dark:text-white
     sm:flex-col sm:items-center sm:justify-items-center
     md:flex-row">
     <nav className="sm:hidden px-3 py-2">
@@ -22,7 +22,7 @@ export default ({ title, children }: Lume.Data, helpers: Lume.Helpers) => (
         <li>
           <details className="relative h-full">
             <summary className="h-full px-4 flex items-center">ABOUT</summary>
-            <ul className="absolute shadow-xl bg-gray-200 dark:bg-black px-4 pb-2 rounded-b-lg border-l border-r border-b border-gray-600 divide-y divide-black">
+            <ul className="absolute shadow-xl bg-gray-200 dark:bg-black px-4 pb-2 rounded-b-lg divide-y divide-black">
               <li><a href="/content/about/mission">OUR MISSION</a></li>
               <li><details>
                 <summary>OUR TEAM</summary>
@@ -37,7 +37,7 @@ export default ({ title, children }: Lume.Data, helpers: Lume.Helpers) => (
         <li>
           <details className="relative h-full">
             <summary className="h-full px-4 flex items-center">MINISTRIES</summary>
-            <ul className="absolute shadow-xl bg-gray-200 dark:bg-black px-4 pb-2 rounded-b-lg border-l border-r border-b border-gray-600 divide-y divide-black">
+            <ul className="absolute shadow-xl bg-gray-200 dark:bg-black px-4 pb-2 rounded-b-lg divide-y divide-black">
               <li><a href="/content/ministries/mission-communities">Missional Communities</a></li>
             </ul>
           </details>
