@@ -24,9 +24,26 @@ Talk to Brian about getting your content change approved and "merged"
 
 # Tech Volunteers Welcome
 
-This website is built with [aleph.js](https://alephjs.org/docs). To contribute on a technical level:
+This website is built with [Lume](https://lume.land/docs/overview/about-lume/) and dynamic content served
+from an AWS Lambda exposed to the `/api` endpoint. This Lambda is built using [Rust](https://rustup.rs/)
+and [Poem](https://docs.rs/poem) and interacts with the
+[Planning Center API](https://developer.planning.center/docs/#/overview/).
 
-1. Fork this repository.
-2. Clone this repository.
-3. Install [aleph.js](https://alephjs.org/docs/get-started)
-4. Run `~/.deno/bin/aleph dev` for hot reloading, or `~/.deno/bin/aleph build` to build a static version of the site.
+Contributions in the form of pull requests are welcome, although please create an issue in github
+before attempting any substantial changes so we can provide guidance.
+
+When developing locally you will need to install some local dependencies first:
+
+* `git` [How to install git](https://github.com/git-guides/install-git)
+* `cargo` [Rustup is the recommended method](https://rustup.rs/)
+* `deno` [How to install deno](https://docs.deno.com/runtime/manual/getting_started/installation)
+
+1. Visit the [github repository](https://github.com/brimworks/somaeastside.org), and click the "Fork" button near the upper right corner.
+2. Clone your fork of the repository. If you are new to this, please visit [setting up git](https://docs.github.com/en/get-started/getting-started-with-git/set-up-git).
+3. `cd` into the directory of your fork and run `deno task serve`... or if you have Make installed, simply run `make run`.
+
+If you intend to make changes to the dynamic content, `cd` into `lambda/pco` and run `make run` which will run the "PCO" (planning center online)
+proxy lambda in the context of a local server.
+
+TODO: Describe how to change the URL of the API to point at the localhost version.
+
