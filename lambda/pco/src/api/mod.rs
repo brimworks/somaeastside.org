@@ -28,7 +28,8 @@ impl Api {
             .https_only(true)
             .timeout(Duration::from_secs(10))
             .connect_timeout(Duration::from_secs(3))
-            .build()?;
+            .build()
+            .wrap_err()?;
         Ok(Api {
             client,
             url,

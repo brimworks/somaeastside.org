@@ -5,11 +5,12 @@ use poem::listener::TcpListener;
 use clap::arg;
 use std::env;
 use crate::api::PersonalAccessToken;
-use crate::error::err;
-use crate::error::wrap_boxed_err;
 use url::Url;
-use crate::error::ErrorKind;
+
 use crate::error::Result;
+use crate::error::Trace;
+use crate::error::WrapErr;
+use crate::error::OrNotFound;
 
 pub(crate) mod api;
 pub(crate) mod secret;
@@ -21,15 +22,21 @@ struct Config {
     pco_url: Url,
 }
 
+fn env_var<K: AsRef<str> + AsRef<std::ffi::OsStr>>(key: K) -> Result<String> {
+    env::var(&key).wrap_err_msg(|_| format!(
+        "Missing environment variable '{}'",
+        <K as AsRef<str>>::as_ref(&key)))
+}
+
 // FIXME: hard-coded URLs:
 fn config_local() -> Result<Config> {
     Ok(Config {
         pat: PersonalAccessToken {
-            app_id: env::var("PCO_PAT_APP_ID")?,
-            secret: env::var("PCO_PAT_SECRET")?.into(),
+            app_id: env_var("PCO_PAT_APP_ID").trace()?,
+            secret: env_var("PCO_PAT_SECRET").trace()?.into(),
         },
         self_url: "http://localhost:3001/api",
-        pco_url: "https://api.planningcenteronline.com/".try_into()?
+        pco_url: "https://api.planningcenteronline.com/".try_into().wrap_err()?
     })
 }
 
@@ -39,11 +46,12 @@ async fn get_parameter(client: &aws_sdk_ssm::Client, parameter: impl Into<String
         .name(parameter.clone())
         .with_decryption(true)
         .send()
-        .await?
+        .await
+        .wrap_err_msg(|_| format!("getting parameter={parameter}"))?
         .parameter
-        .ok_or(err(ErrorKind::NotFound, format!("parameter={parameter} not found")))?
+        .or_not_found(|| format!("parameter={parameter} not found"))?
         .value
-        .ok_or(err(ErrorKind::NotFound, format!("parameter={parameter} has no value")))?;
+        .or_not_found(|| format!("parameter={parameter} has no value"))?;
     Ok(value)
 }
 
@@ -52,11 +60,11 @@ async fn config_lambda() -> Result<Config> {
     let client = aws_sdk_ssm::Client::new(&config);
     Ok(Config {
         pat: PersonalAccessToken {
-            app_id: get_parameter(&client, "/prod/pco/pat/app_id").await?,
-            secret: get_parameter(&client, "/prod/pco/pat/secret").await?.into(),
+            app_id: get_parameter(&client, "/prod/pco/pat/app_id").await.trace()?,
+            secret: get_parameter(&client, "/prod/pco/pat/secret").await.trace()?.into(),
         },
         self_url: "https://soma.brimworks.com/api",
-        pco_url: "https://api.planningcenteronline.com/".try_into()?
+        pco_url: "https://api.planningcenteronline.com/".try_into().wrap_err()?
     })
 }
 
@@ -75,9 +83,9 @@ async fn main() -> Result<()> {
         config_local()
     } else {
         config_lambda().await
-    }?;
+    }.trace()?;
     let api_service =
-        OpenApiService::new(api::Api::new(config.pco_url, config.pat)?, "Soma API", "1.0").server(config.self_url);
+        OpenApiService::new(api::Api::new(config.pco_url, config.pat).trace()?, "Soma API", "1.0").server(config.self_url);
     let ui = api_service.swagger_ui();
     let app = Route::new().nest("/api", api_service).nest("/api/docs", ui);
 
@@ -85,9 +93,10 @@ async fn main() -> Result<()> {
         println!("\x1b[1;94mServing API here\x1b[0m -> http://localhost:3001/api/docs");
         poem::Server::new(TcpListener::bind("127.0.0.1:3001"))
             .run(app)
-            .await?;
+            .await
+            .wrap_err()?;
     } else {
-        poem_lambda::run(app).await.map_err(wrap_boxed_err)?;
+        poem_lambda::run(app).await.wrap_err()?;
     }
     Ok(())
 }
